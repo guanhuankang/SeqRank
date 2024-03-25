@@ -1,0 +1,95 @@
+MODEL:
+    META_ARCHITECTURE: "SeqRank"
+    PIXEL_MEAN: [123.675, 116.280, 103.530]
+    PIXEL_STD: [58.395, 57.120, 57.375]
+    WEIGHTS: ""
+    PE: "APE"
+    BACKBONE:
+        NAME: "ResNeXt50"
+        NUM_FEATURES: (256,512,1024,2048)
+        FEATURE_KEYS: ["res2", "res3", "res4", "res5"]
+    NECK:
+        NAME: "FrcPN"
+    SIS_HEAD:
+        NAME: "FoveaModule"
+        NUM_BLOCKS: 6
+        KEY_FEATURES: ["res5", "res4", "res3"]
+        MASK_KEY: "res2"
+    GAZE_SHIFT_HEAD:
+        NAME: "SequentialRankingModule"
+        NUM_BLOCKS: 6
+        KEY: "res5"
+    COMMON:
+        EMBED_DIM: 256
+        NUM_HEADS: 8
+        HIDDEN_DIM: 2048
+        DROPOUT_ATTN: 0.0
+        DROPOUT_FFN: 0.0
+        NUM_QUERIES: 100
+    MODULES:
+        MULTIQ:
+            GRID_SIZES: [[1,1], [2,2], [3,3]]
+LOSS:
+    CLS_COST: 10.0
+    MASK_CE_COST: 5.0
+    MASK_DICE_COST: 5.0
+    BBOX_L1_COST: 5.0
+    BBOX_GIOU_COST: 2.0
+    SAL_COST: 5.0
+    SAL_POS: 1.0
+    SAL_NEG: 1.0
+    OBJ_POS: 1.0
+    OBJ_NEG: 0.1
+    AUX_WEIGHT: 0.0
+    AUX: "disable"
+    NUM_POINTS: 12544
+DATASETS:
+    TRAIN: ("assr_train",)
+    TEST: ("assr_test",)
+    ROOT: "assets/datasets"
+DATALOADER:
+    NUM_WORKERS: 4
+SOLVER:
+    AMP:
+        ENABLED: true
+    BACKBONE_MULTIPLIER: 1.0
+    BASE_LR: 0.0001
+    CHECKPOINT_PERIOD: 10000
+    CLIP_GRADIENTS:
+        CLIP_TYPE: full_model
+        CLIP_VALUE: 5.0
+        ENABLED: true
+        NORM_TYPE: 2.0
+    GAMMA: 0.1
+    IMS_PER_BATCH: 32
+    IMS_PER_GPU: 8
+    LR_SCHEDULER_NAME: WarmupMultiStepLR
+    MOMENTUM: 0.9
+    OPTIMIZER: ADAMW
+    STEPS: (20000,)
+    MAX_ITER: 30000
+    REFERENCE_WORLD_SIZE: 0
+    WARMUP_FACTOR: 1.0
+    WARMUP_ITERS: 100
+    WEIGHT_DECAY: 0.0001
+INPUT:
+    FT_SIZE_TRAIN: 800
+    FT_SIZE_TEST: 800
+    MIN_SIZE_TRAIN: (480,640)
+    MIN_SIZE_TEST: 640
+    MAX_SIZE_TEST: 1333
+    FORMAT: "RGB"
+OUTPUT_DIR: "output/assr"
+TEST:
+    EVAL_PERIOD: 5000
+    METRICS_OF_INTEREST: ["mae", "acc", "fbeta", "iou", "sa_sor", "sor", "ap", "ar", "top1", "top2", "top3", "top4", "top5"]
+    THRESHOLD: 0.5
+    EXPECTED_RESULTS: []
+    PRECISE_BN:
+        ENABLED: false
+        NUM_ITER: 200
+    AUG:
+        ENABLED: false
+    UPPER_BOUND: false
+    EVAL_SAVE: false
+VERSION: 2

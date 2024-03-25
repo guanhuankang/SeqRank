@@ -1,0 +1,6 @@
+_BASE_: swinL.yaml
+MODEL:
+    NECK:
+        NAME: "FPN"
+    GAZE_SHIFT_HEAD:
+        NUM_BLOCKS: 2

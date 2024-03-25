@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .upload-input {
+            margin-bottom: 10px;
+        }
+
+        .upload-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #008CBA;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .upload-button:hover {
+            background-color: #00a9d6;
+        }
+
+        .upload-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .image-preview {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .image-preview img {
+            max-width: 400px;
+            max-height: 400px;
+            border: 1px solid #cccccc;
+        }
+    </style>
+    <script>
+        // Function to preview the selected image
+        function previewImage() {
+            var file = document.getElementById("file").files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("input-image").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Function to check if an image is selected before submitting
+        function checkImage() {
+            var file = document.getElementById("file").files[0];
+            if (!file) {
+                alert("Please select an image");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>SeqRank Demo</h1>
+        <form class="upload-form" action="/" method="post" enctype="multipart/form-data" onsubmit="return checkImage()">
+            <input class="upload-input" type="file" id="file" name="file" accept="image/*" onchange="previewImage()">
+            <button class="upload-button" type="submit">Submit</button>
+        </form>
+        <div class="image-preview">
+            <img id="input-image" src="data:image/png;base64,{{ input_image_base64 | safe }}" alt="Input image">
+            <!-- Use src attribute with data prefix for output image -->
+            <img id="output-image" src="data:image/png;base64,{{ output_image_base64 | safe }}" alt="Output image">
+        </div>
+    </div>
+</body>
+</html>

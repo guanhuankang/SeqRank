@@ -1,0 +1,4 @@
+_BASE_: R50.yaml
+MODEL:
+    BACKBONE:
+        NAME: "ResNeXt101"
