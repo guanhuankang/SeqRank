@@ -155,8 +155,9 @@ python train_net.py \
 You can check the sor scores in log.txt. Visualize the result file (output/assr_inference/assr_test_coco_format.pth) using our visualization tool. Make sure that you choose the correspondding testset to do evaluation.
 
 ## Cite
+[bib format](cite_seqrank_guan.bib)
 ```
-Coming
+Guan, H., & Lau, R. W. (2024). SeqRank: Sequential Ranking of Salient Objects. Proceedings of the AAAI Conference on Artificial Intelligence, 38(3), 1941-1949. https://doi.org/10.1609/aaai.v38i3.27964
 ```
 
-If you have any question or find some mistakes, feel free to emial me (Huankang.Guan@my.cityu.edu.hk)!
+If you have any question or find some mistakes, post them via issue pannel or feel free to email me (Huankang.Guan@my.cityu.edu.hk)! Thanks!
