@@ -157,7 +157,9 @@ You can check the sor scores in log.txt. Visualize the result file (output/assr_
 ## Cite
 [bib format](cite_seqrank_guan.bib)
 ```
-Guan, H., & Lau, R. W. (2024). SeqRank: Sequential Ranking of Salient Objects. Proceedings of the AAAI Conference on Artificial Intelligence, 38(3), 1941-1949. https://doi.org/10.1609/aaai.v38i3.27964
+Guan, H., & Lau, R. W. (2024). SeqRank: Sequential Ranking of Salient Objects.
+Proceedings of the AAAI Conference on Artificial Intelligence, 38(3), 1941-1949.
+https://doi.org/10.1609/aaai.v38i3.27964
 ```
 
 If you have any question or find some mistakes, post them via issue pannel or feel free to email me (Huankang.Guan@my.cityu.edu.hk)! Thanks!
