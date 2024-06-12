@@ -7,7 +7,7 @@
 
 A novel salient object ranking model detects & ranks salient objects in a sequential way, yielding more favorable results.
 
-[[Paper]](https://1drv.ms/b/s!Ap4-mN9MwOE5gpZ9LlJZ6iP3VmhU0A?e=WVEoPs) [[Data]](https://github.com/guanhuankang/SeqRank/tree/main/assets/datasets) [[Results & Model Zoo]](https://github.com/guanhuankang/SeqRank/tree/main/assets/seqrank_results) [[Suppl]](doc/guan_seqrank_suppl.pdf) [[Poster]](doc/guan_seqrank_poster.pdf)
+[[Paper]](https://ojs.aaai.org/index.php/AAAI/article/view/27964) [[Data]](https://github.com/guanhuankang/SeqRank/tree/main/assets/datasets) [[Results & Model Zoo]](https://github.com/guanhuankang/SeqRank/tree/main/assets/seqrank_results) [[Suppl]](doc/guan_seqrank_suppl.pdf) [[Poster]](doc/guan_seqrank_poster.pdf)
 
 ## 
 
